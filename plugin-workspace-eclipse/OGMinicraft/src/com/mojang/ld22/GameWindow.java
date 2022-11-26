@@ -1,16 +1,19 @@
 package com.mojang.ld22;
 
 import java.awt.EventQueue;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
+
+import com.mt.minicraft.BaseAPI;
 import com.mt.pluginloader.*;
 public class GameWindow {
 
 	private Game game = new Game();
 	private JFrame frmMinicraft;
-	private PluginRegistryServiceLoader prsl = new PluginRegistryServiceLoader();
-	
+	private static PluginRegistryServiceLoader prsl = new PluginRegistryServiceLoader();
+	public static final HashMap<String, BaseAPI> plugins = prsl.getPlugins(BaseAPI.class);
 	/**
 	 * Launch the application.
 	 */
@@ -32,7 +35,9 @@ public class GameWindow {
 	 */
 	public GameWindow() {
 		initialize();
-		
+		plugins.forEach((name, plugin) -> {
+			System.out.println(name);
+		});
 	}
 
 	/**
