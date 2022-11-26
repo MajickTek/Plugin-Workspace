@@ -5,7 +5,16 @@ import java.util.List;
 import java.util.ServiceLoader;
 
 public interface PluginRegistry {
+	
 	<TPlugin extends Plugin> List<TPlugin> getPlugins(Class<TPlugin> pluginClass);
+	
+	
+	/**
+	 * default implementation returns a list of plugins found in the current class loader
+	 * @param <TPlugin> a class implementing a plugin interface
+	 * @param pluginClass usually the same class as TPlugin
+	 * @return a list of loaded plugin classes
+	 */
 	default <TPlugin extends Plugin> List<TPlugin> getPluginsInternal(Class<TPlugin> pluginClass) {
 		ServiceLoader<TPlugin> serviceLoader = ServiceLoader.load(pluginClass);
 		List<TPlugin> plugins = new ArrayList<>();
