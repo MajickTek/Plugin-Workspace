@@ -13,5 +13,7 @@ public class Start {
 			System.out.println(String.format("running test() method for plugin %s", name));
 			plugin.test();
 		});
+		
+		
 	}
 }

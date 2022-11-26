@@ -1,7 +1,6 @@
 package com.mt.testapp.coreplugins;
 
 import java.lang.reflect.Method;
-
 import com.mt.testapp.api.TestAPI;
 
 public class TestPlugin implements TestAPI{
