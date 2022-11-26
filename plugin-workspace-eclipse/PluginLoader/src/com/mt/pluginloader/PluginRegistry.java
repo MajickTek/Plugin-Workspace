@@ -1,7 +1,6 @@
 package com.mt.pluginloader;
 
 import java.util.HashMap;
-import java.util.ServiceLoader;
 
 public interface PluginRegistry {
 	
