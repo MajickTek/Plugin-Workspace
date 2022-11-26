@@ -5,15 +5,12 @@ import java.util.List;
 
 import com.mt.pluginloader.PluginRegistryServiceLoader;
 
-public class Test {
+public class TestExternal {
 
 	public static void main(String[] args) {
+		//Testing external jars
 		PluginRegistryServiceLoader prsl = new PluginRegistryServiceLoader();
-		HashMap<String, TestPluginAPI> testList = prsl.getPluginsInternal(TestPluginAPI.class);
-		
-		testList.forEach((k, v) -> {
-			System.out.println(String.format("%s, %s", k, v.getName()));
-		});
+		HashMap<String, TestPluginAPI> plugins = prsl.getPlugins(TestPluginAPI.class);
 		
 	}
 

@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ServiceLoader;
 
@@ -17,12 +18,12 @@ public class PluginRegistryServiceLoader implements PluginRegistry {
 	public static final String PLUGIN_FILE_EXTENSION_DEFAULT=".jar";
 	
 	@Override
-	public <TPlugin extends Plugin> List<TPlugin> getPlugins(Class<TPlugin> pluginClass) {
+	public <TPlugin extends Plugin> HashMap<String, TPlugin> getPlugins(Class<TPlugin> pluginClass) {
 		ServiceLoader<TPlugin> pluginLoader = ServiceLoader.load(pluginClass, createPluginClassLoader(lookupPluginURLs()));
-		List<TPlugin> plugins = new ArrayList<>();
+		HashMap<String, TPlugin> plugins = new HashMap<>();
 		pluginLoader.forEach(plugin -> {
 			System.out.println(String.format("Found plugin of type %s at: %s", pluginClass.getName(), plugin.getClass().getProtectionDomain().getCodeSource().getLocation()));
-			plugins.add(plugin);
+			plugins.put(plugin.getClass().getSimpleName(), plugin);
 		});
 		
 		if(plugins.isEmpty()) {

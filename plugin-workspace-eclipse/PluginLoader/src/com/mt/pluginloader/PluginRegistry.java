@@ -1,12 +1,13 @@
 package com.mt.pluginloader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ServiceLoader;
 
 public interface PluginRegistry {
 	
-	<TPlugin extends Plugin> List<TPlugin> getPlugins(Class<TPlugin> pluginClass);
+	<TPlugin extends Plugin> HashMap<String, TPlugin> getPlugins(Class<TPlugin> pluginClass);
 	
 	
 	/**
@@ -15,12 +16,12 @@ public interface PluginRegistry {
 	 * @param pluginClass usually the same class as TPlugin
 	 * @return a list of loaded plugin classes
 	 */
-	default <TPlugin extends Plugin> List<TPlugin> getPluginsInternal(Class<TPlugin> pluginClass) {
+	default <TPlugin extends Plugin> HashMap<String, TPlugin> getPluginsInternal(Class<TPlugin> pluginClass) {
 		ServiceLoader<TPlugin> serviceLoader = ServiceLoader.load(pluginClass);
-		List<TPlugin> plugins = new ArrayList<>();
+		HashMap<String, TPlugin> plugins = new HashMap<>();
 		serviceLoader.forEach(plugin -> {
 			System.out.println(String.format("Found plugin of type %s at: %s", pluginClass.getName(), plugin.getClass().getProtectionDomain().getCodeSource().getLocation()));
-			plugins.add(plugin);
+			plugins.put(plugin.getClass().getSimpleName(), plugin);
 		});
 		
 		if(plugins.isEmpty()) {
