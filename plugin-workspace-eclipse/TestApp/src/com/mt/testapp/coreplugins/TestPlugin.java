@@ -1,8 +1,11 @@
-package com.mt.pluginloader.test;
+package com.mt.testapp.coreplugins;
 
 import java.lang.reflect.Method;
 
-public class TestPlugin implements TestPluginAPI {
+import com.mt.testapp.api.TestAPI;
+
+public class TestPlugin implements TestAPI{
+
 	@Override
 	public void test() {
 		System.out.println("====test====");
@@ -12,4 +15,5 @@ public class TestPlugin implements TestPluginAPI {
 		}
 		System.out.println("========");
 	}
+
 }
