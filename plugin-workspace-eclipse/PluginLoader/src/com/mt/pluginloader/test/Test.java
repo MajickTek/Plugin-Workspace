@@ -8,8 +8,11 @@ public class Test {
 
 	public static void main(String[] args) {
 		PluginRegistryServiceLoader prsl = new PluginRegistryServiceLoader();
-		List<TestPlugin> testList = prsl.getPluginsInternal(TestPlugin.class);
+		List<TestPluginAPI> testList = prsl.getPluginsInternal(TestPluginAPI.class);
 		
+		testList.forEach(plugin -> {
+			System.out.println(plugin.name());
+		});
 		
 	}
 

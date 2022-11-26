@@ -1,7 +1,10 @@
 package com.mt.pluginloader.test;
 
-import com.mt.pluginloader.Plugin;
+public class TestPlugin implements TestPluginAPI{
 
-public interface TestPlugin extends Plugin{
-	String name();
+	@Override
+	public String name() {
+		return "Test";
+	}
+
 }
