@@ -11,7 +11,10 @@ public class TestExternal {
 		//Testing external jars
 		PluginRegistryServiceLoader prsl = new PluginRegistryServiceLoader();
 		HashMap<String, TestPluginAPI> plugins = prsl.getPlugins(TestPluginAPI.class);
-		
+		plugins.forEach((name, plugin) -> {
+			System.out.println(String.format("running test() method for plugin %s", name));
+			plugin.test();
+		});
 	}
 
 }
