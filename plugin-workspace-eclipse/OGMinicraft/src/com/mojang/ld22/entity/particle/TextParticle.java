@@ -50,4 +50,11 @@ public class TextParticle extends Entity {
 		Font.draw(msg, screen, x - msg.length() * 4, y - (int) (zz), col);
 	}
 
+	public String getMessage() {
+		return msg;
+	}
+	
+	public int getColor() {
+		return col;
+	}
 }

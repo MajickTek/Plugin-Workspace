@@ -56,6 +56,8 @@ public class Game extends Canvas implements Runnable {
 	private int wonTimer = 0;
 	public boolean hasWon = false;
 
+	public static final Game GAME = new Game();
+	
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 		if (menu != null) menu.init(this, input);
@@ -330,25 +332,28 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	public static void main(String[] args) {
-		Game game = new Game();
-		game.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		game.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
-		game.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		GAME.setMinimumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		GAME.setMaximumSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
+		GAME.setPreferredSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 
 		JFrame frame = new JFrame(Game.NAME);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
-		frame.add(game, BorderLayout.CENTER);
+		frame.add(GAME, BorderLayout.CENTER);
 		frame.pack();
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 
-		game.start();
+		GAME.start();
 	}
 
 	public void won() {
 		wonTimer = 60 * 3;
 		hasWon = true;
+	}
+	
+	public Level getCurrentLevel() {
+		return level;
 	}
 }

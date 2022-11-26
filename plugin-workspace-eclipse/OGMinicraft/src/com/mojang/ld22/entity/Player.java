@@ -3,7 +3,9 @@ package com.mojang.ld22.entity;
 import java.util.List;
 
 import com.mojang.ld22.Game;
+import com.mojang.ld22.GameRunner;
 import com.mojang.ld22.InputHandler;
+import com.mojang.ld22.TextParticleConverter;
 import com.mojang.ld22.entity.particle.TextParticle;
 import com.mojang.ld22.gfx.Color;
 import com.mojang.ld22.gfx.Screen;
@@ -100,6 +102,13 @@ public class Player extends Mob {
 		}
 
 		if (input.attack.clicked) {
+			TextParticleConverter tpc = new TextParticleConverter();
+			GameRunner.plugins.forEach((name, plugin) -> {
+				List<TextParticle> particles = tpc.createFromEntities(plugin.particles());
+				particles.forEach(p -> {
+					Game.GAME.getCurrentLevel().add(p);
+				});
+			});
 			if (stamina == 0) {
 
 			} else {
