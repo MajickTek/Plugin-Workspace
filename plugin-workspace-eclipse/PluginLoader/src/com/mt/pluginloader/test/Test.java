@@ -11,7 +11,7 @@ public class Test {
 		List<TestPluginAPI> testList = prsl.getPluginsInternal(TestPluginAPI.class);
 		
 		testList.forEach(plugin -> {
-			System.out.println(plugin.name());
+			System.out.println(plugin.getName());
 		});
 		
 	}

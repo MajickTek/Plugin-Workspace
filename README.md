@@ -7,3 +7,4 @@ Ideally you use the plugin loader api in your game, while the players just have 
 
 ## TODO
 * JavaDoc
+* API hooks for logging instead of using System.out/System.err
