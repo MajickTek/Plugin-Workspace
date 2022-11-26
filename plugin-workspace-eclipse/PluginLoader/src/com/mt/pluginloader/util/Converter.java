@@ -1,4 +1,4 @@
-package com.mt.pluginloader;
+package com.mt.pluginloader.util;
 
 import java.util.Collection;
 import java.util.List;
