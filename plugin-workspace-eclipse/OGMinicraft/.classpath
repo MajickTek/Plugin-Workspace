@@ -8,5 +8,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="res"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginLoader"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MinicraftAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

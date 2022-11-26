@@ -4,12 +4,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
-
+import com.mt.pluginloader.*;
 public class GameWindow {
 
 	private Game game = new Game();
 	private JFrame frmMinicraft;
-
+	private PluginRegistryServiceLoader prsl = new PluginRegistryServiceLoader();
+	
 	/**
 	 * Launch the application.
 	 */
@@ -31,6 +32,7 @@ public class GameWindow {
 	 */
 	public GameWindow() {
 		initialize();
+		
 	}
 
 	/**
