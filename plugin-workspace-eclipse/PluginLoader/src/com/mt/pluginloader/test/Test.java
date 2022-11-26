@@ -1,8 +1,6 @@
 package com.mt.pluginloader.test;
 
 import java.util.HashMap;
-import java.util.List;
-
 import com.mt.pluginloader.PluginRegistryServiceLoader;
 
 public class Test {
