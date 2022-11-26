@@ -25,7 +25,7 @@ public class PluginRegistryServiceLoader implements PluginRegistry {
 		HashMap<String, TPlugin> plugins = new HashMap<>();
 		pluginLoader.forEach(plugin -> {
 			System.out.println(String.format("Found plugin of type %s at: %s", pluginClass.getName(), plugin.getClass().getProtectionDomain().getCodeSource().getLocation()));
-			plugins.put(plugin.getClass().getSimpleName(), plugin);
+			plugins.putIfAbsent(plugin.getClass().getSimpleName(), plugin);
 		});
 		
 		if(plugins.isEmpty()) {
