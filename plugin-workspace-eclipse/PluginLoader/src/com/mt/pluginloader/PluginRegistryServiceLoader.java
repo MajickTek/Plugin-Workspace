@@ -10,12 +10,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ServiceLoader;
 
+
 public class PluginRegistryServiceLoader implements PluginRegistry {
 
 	public static final String PLUGIN_LOOKUP_PATH_PROPERTY_NAME = "com.mt.pluginloader.lookupPath";
 	public static final String PLUGIN_FILE_EXTENSION_PROPERTY_NAME="com.mt.pluginloader.fileExtension";
 	public static final String PLUGIN_LOOKUP_PATH_DEFAULT="./plugins/";
 	public static final String PLUGIN_FILE_EXTENSION_DEFAULT=".jar";
+	
 	
 	@Override
 	public <TPlugin extends Plugin> HashMap<String, TPlugin> getPlugins(Class<TPlugin> pluginClass) {
