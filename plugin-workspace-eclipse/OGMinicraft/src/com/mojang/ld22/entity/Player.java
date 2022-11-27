@@ -104,7 +104,7 @@ public class Player extends Mob {
 		if (input.attack.clicked) {
 			TextParticleConverter tpc = new TextParticleConverter();
 			GameRunner.plugins.forEach((name, plugin) -> {
-				List<TextParticle> particles = tpc.createFromEntities(plugin.particles());
+				List<TextParticle> particles = tpc.createFromTs(plugin.particles());
 				particles.forEach(p -> {
 					Game.GAME.getCurrentLevel().add(p);
 				});
