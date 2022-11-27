@@ -20,7 +20,7 @@ public class PluginRegistryServiceLoader implements PluginRegistry {
 	
 	
 	@Override
-	public <TPlugin extends Plugin> HashMap<String, TPlugin> getPlugins(Class<TPlugin> pluginClass) {
+	public <TPlugin extends IPlugin> HashMap<String, TPlugin> getPlugins(Class<TPlugin> pluginClass) {
 		ServiceLoader<TPlugin> pluginLoader = ServiceLoader.load(pluginClass, createPluginClassLoader(lookupPluginURLs()));
 		HashMap<String, TPlugin> plugins = new HashMap<>();
 		pluginLoader.forEach(plugin -> {

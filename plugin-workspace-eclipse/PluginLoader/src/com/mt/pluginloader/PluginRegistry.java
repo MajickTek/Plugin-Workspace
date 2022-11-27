@@ -4,6 +4,6 @@ import java.util.HashMap;
 
 public interface PluginRegistry {
 	
-	<TPlugin extends Plugin> HashMap<String, TPlugin> getPlugins(Class<TPlugin> pluginClass);
+	<TPlugin extends IPlugin> HashMap<String, TPlugin> getPlugins(Class<TPlugin> pluginClass);
 	
 }

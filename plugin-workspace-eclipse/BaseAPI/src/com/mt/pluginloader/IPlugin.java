@@ -1,6 +1,5 @@
 package com.mt.pluginloader;
 
+public interface IPlugin {
 
-public interface Plugin {
-	
 }

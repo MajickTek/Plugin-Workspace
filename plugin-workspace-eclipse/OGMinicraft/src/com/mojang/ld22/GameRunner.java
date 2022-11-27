@@ -1,10 +1,6 @@
 package com.mojang.ld22;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-import com.mojang.ld22.entity.particle.TextParticle;
 import com.mt.minicraft.BaseAPI;
 import com.mt.pluginloader.PluginRegistryServiceLoader;
 
