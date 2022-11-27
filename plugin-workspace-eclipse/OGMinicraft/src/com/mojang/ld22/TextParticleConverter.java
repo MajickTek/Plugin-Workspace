@@ -5,7 +5,8 @@ import java.awt.Point;
 import com.mt.minicraft.TextParticle;
 import com.mt.pluginloader.util.GenericConverter;
 
-public class TextParticleConverter implements GenericConverter<com.mt.minicraft.TextParticle, com.mojang.ld22.entity.particle.TextParticle> {
+public class TextParticleConverter
+		implements GenericConverter<com.mt.minicraft.TextParticle, com.mojang.ld22.entity.particle.TextParticle> {
 
 	@Override
 	public TextParticle createFromU(com.mojang.ld22.entity.particle.TextParticle other) {
@@ -33,11 +34,10 @@ public class TextParticleConverter implements GenericConverter<com.mt.minicraft.
 
 	@Override
 	public com.mojang.ld22.entity.particle.TextParticle createFromT(TextParticle other) {
-Point p = new Point(Game.GAME.player.x, Game.GAME.player.y);
-		
+		Point p = new Point(Game.GAME.player.x, Game.GAME.player.y);
+
 		return new com.mojang.ld22.entity.particle.TextParticle(other.text(), (int) other.location(p.x, p.y).getX(),
 				(int) other.location(p.x, p.y).getY(), other.color());
 	}
-
 
 }
