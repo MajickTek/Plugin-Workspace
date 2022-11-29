@@ -18,6 +18,4 @@ Documentation and a full example API/plugin combo are TBD
 
 https://github.com/Jerady/addon-commons for the base serviceloader code
 
-https://github.com/canitzp/AlternativeMinecraftRegistry for the registry api (yet to be uploaded)
-
 https://java-design-patterns.com/ for some neat programming tricks such as the Converter pattern which is a fundamental part of how my plugin api is meant to work
