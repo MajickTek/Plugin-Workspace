@@ -5,7 +5,5 @@ import com.mt.pluginloader.IPlugin;
 
 
 public interface BaseAPI extends IPlugin {
-	void onStart();
-	void onStop();
 	
 }
