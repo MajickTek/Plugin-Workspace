@@ -8,6 +8,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
@@ -25,6 +26,8 @@ import com.mojang.ld22.screen.LevelTransitionMenu;
 import com.mojang.ld22.screen.Menu;
 import com.mojang.ld22.screen.TitleMenu;
 import com.mojang.ld22.screen.WonMenu;
+import com.mt.minicraft.BaseAPI;
+import com.mt.pluginloader.PluginRegistryServiceLoader;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
@@ -58,6 +61,14 @@ public class Game extends Canvas implements Runnable {
 
 	public static final Game GAME = new Game();
 	
+	private PluginRegistryServiceLoader prsl = new PluginRegistryServiceLoader();
+	private HashMap<String, BaseAPI> plugins = prsl.getPlugins(BaseAPI.class);
+	
+	
+	public HashMap<String, BaseAPI> getPlugins() {
+		return plugins;
+	}
+
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 		if (menu != null) menu.init(this, input);

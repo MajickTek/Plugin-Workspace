@@ -3,19 +3,13 @@ package com.mojang.ld22.entity;
 import java.util.List;
 
 import com.mojang.ld22.Game;
-import com.mojang.ld22.GameRunner;
 import com.mojang.ld22.InputHandler;
-import com.mojang.ld22.TextParticleConverter;
 import com.mojang.ld22.entity.particle.TextParticle;
 import com.mojang.ld22.gfx.Color;
 import com.mojang.ld22.gfx.Screen;
 import com.mojang.ld22.item.FurnitureItem;
 import com.mojang.ld22.item.Item;
 import com.mojang.ld22.item.PowerGloveItem;
-import com.mojang.ld22.item.ResourceItem;
-import com.mojang.ld22.item.ToolItem;
-import com.mojang.ld22.item.ToolType;
-import com.mojang.ld22.item.resource.Resource;
 import com.mojang.ld22.level.Level;
 import com.mojang.ld22.level.tile.Tile;
 import com.mojang.ld22.screen.InventoryMenu;
@@ -102,13 +96,7 @@ public class Player extends Mob {
 		}
 
 		if (input.attack.clicked) {
-			TextParticleConverter tpc = new TextParticleConverter();
-			GameRunner.plugins.forEach((name, plugin) -> {
-				List<TextParticle> particles = tpc.createFromTs(plugin.particles());
-				particles.forEach(p -> {
-					Game.GAME.getCurrentLevel().add(p);
-				});
-			});
+			
 			if (stamina == 0) {
 
 			} else {
