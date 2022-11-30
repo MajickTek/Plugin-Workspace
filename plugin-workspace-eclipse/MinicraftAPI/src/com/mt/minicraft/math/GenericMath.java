@@ -120,6 +120,11 @@ public class GenericMath {
 		}
 	}
 	
+	/**
+	 * This enum represents a singleton to get an instance of the GenericMath class.
+	 * <br>
+	 * Usage: {@code GenericMath math = GenericMath.Calculator.INSTANCE.get()}
+	 */
 	public static enum Calculator {
 		INSTANCE;
 		GenericMath math;
