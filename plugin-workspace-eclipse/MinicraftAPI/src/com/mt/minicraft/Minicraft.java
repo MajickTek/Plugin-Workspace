@@ -1,0 +1,5 @@
+package com.mt.minicraft;
+
+public class Minicraft implements BaseAPI{
+	
+}
