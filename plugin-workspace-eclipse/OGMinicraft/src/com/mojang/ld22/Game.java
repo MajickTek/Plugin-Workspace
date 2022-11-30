@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Random;
-
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
@@ -31,7 +29,6 @@ import com.mt.pluginloader.PluginRegistryServiceLoader;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 1L;
-	private Random random = new Random();
 	public static final String NAME = "Minicraft";
 	public static final int HEIGHT = 120;
 	public static final int WIDTH = 160;
@@ -136,6 +133,8 @@ public class Game extends Canvas implements Runnable {
 
 		resetGame();
 		setMenu(new TitleMenu());
+		
+		//TODO: make better
 		getPlugins().forEach((n, p) -> {
 			p.onInit();
 		});
