@@ -1,105 +1,114 @@
 package com.mt.minicraft.math;
 
-import java.util.Objects;
-import java.util.Scanner;
-
 public class Vec2 {
-	public final static Vec2 ZERO = new Vec2(0, 0);
-    public final int x, y;
-
-    Vec2(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    /**
-     * Create
-     */
-    public static Vec2 xyz(int x, int y) {
-        return new Vec2(x, y);
-    }
-
-    /**
-     * Add
-     */
-    public Vec2 add(Vec2 v) {
-        return xyz(x + v.x, y + v.y);
-    }
-
-    /**
-     * Add
-     */
-    public Vec2 add(int x, int y) {
-        return xyz(this.x + x, this.y + y);
-    }
-
-    /**
-     * Subtract
-     */
-    public Vec2 sub(Vec2 v) {
-        return xyz(x - v.x, y - v.y);
-    }
-
-    /**
-     * Multiply with integer (scale)
-     */
-    public Vec2 mul(int s) {
-        return xyz(s * x, s * y);
-    }
-
-    /**
-     * Negate (multiply with -1)
-     */
-    public Vec2 neg() {
-        return xyz(-x, -y);
-    }
-
-    /**
-     * Scalar product
-     */
-    public int dot(Vec2 v) {
-        return x * v.x + y * v.y;
-    }
-
-    @Override
-    public int hashCode() {
-    	
-        return Objects.hash(x, y);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null || !(obj instanceof Vec2)) {
-            return false;
-        }
-        return hashCode() == ((Vec2) obj).hashCode();
-    }
-
-    @Override
-    public final String toString() {
-        return x + "," + y + ",";
-    }
-
-    static Vec2 decode(String encoded) {
-        Scanner s = new Scanner(encoded).useDelimiter("\\,");
-        return xyz(s.nextInt(), s.nextInt());
-    }
-
-    /**
-     * A Vec2tor with length=1
-     */
-    public static class Unit extends Vec2 {
-
-        public final static Unit X = new Unit(1, 0);
-        public final static Unit Y = new Unit(0, 1);
-
-        Unit(int x, int y) {
-            super(x, y);
-        }
-
-        @Override
-        public Unit neg() {
-            return new Unit(-x, -y);
-        }
-    }
+	public static final GenericMath CALCULATOR = new GenericMath();
+	
+	public static final Vec2 ZERO = new Vec2(0, 0);
+	
+	public final Number x, y;
+	
+	private Vec2(Number x, Number y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	/**
+	 * Create a new vector object; can take any Number type
+	 * @param x x coordinate
+	 * @param y y coordinate
+	 * @return a new Vec2 object
+	 */
+	public static Vec2 xy(Number x, Number y) {
+		return new Vec2(x, y);
+	}
+	
+	/**
+	 * add two vectors together
+	 * @param v vector to add to
+	 * @return {@code xy(this.x + v.x, this.y + v.y);} <br>see {@link #xy(Number, Number)}
+	 */
+	public Vec2 add(Vec2 v) {
+		return xy(CALCULATOR.add(x, v.x), CALCULATOR.add(y, v.y));
+	}
+	
+	/**
+	 * see {@link #add(Vec2)}.
+	 * @param v vector to subtract from
+	 * @return {@code xy(this.x - v.x, this.y - v.y);} <br>see {@link #xy(Number, Number)}
+	 */
+	public Vec2 sub(Vec2 v) {
+		return xy(CALCULATOR.sub(x, v.x), CALCULATOR.sub(y, v.y));
+	}
+	
+	/**
+	 * see {@link #add(Vec2)}.
+	 * @param v vector to multiply by
+	 * @return {@code xy(this.x * v.x, this.y * v.y);} <br>see {@link #xy(Number, Number)}
+	 */
+	public Vec2 mul(Vec2 v) {
+		return xy(CALCULATOR.mul(x, v.x), CALCULATOR.mul(y, v.y));
+	}
+	
+	/**
+	 * Multiplies this vector by a scale
+	 * @param scale any valid number
+	 * @return {@code xy(scale * this.x, scale * this.y);} <br>see {@link #xy(Number, Number)}
+	 */
+	public Vec2 mul(Number scale) {
+		return xy(CALCULATOR.mul(scale, x), CALCULATOR.mul(scale, y));
+	}
+	
+	/**
+	 * Negate this vector.
+	 * @return {@code mul(-1);}<br>see {@link #mul(Number)}
+	 */
+	public Vec2 neg() {
+		return mul(-1);
+	}
+	
+	/**
+	 * see {@link #add(Vec2)}
+	 * @param v vector to divide by
+	 * @return {@code xy(this.x / v.x, this.y / v.y);}<br>see {@link #xy(Number, Number)}
+	 */
+	public Vec2 div(Vec2 v) {
+		return xy(CALCULATOR.div(x, v.x), CALCULATOR.div(y, v.y));
+	}
+	
+	/**
+	 * Calculates the dot product of this vector and the parameter
+	 * @param v second vector
+	 * @return {@code (this.x * v.x) + (this.y * v.y))}
+	 */
+	public Number dot(Vec2 v) {
+		return CALCULATOR.add(CALCULATOR.mul(x, v.x), CALCULATOR.mul(y, v.y));
+	}
+	
+	/**
+	 * @deprecated this method is not implemented currently.
+	 * @param v second vector
+	 * @throws UnsupportedOperationException always
+	 * @return
+	 */
+	Vec2 cross(Vec2 v) {
+		throw new UnsupportedOperationException("not implemented yet");
+	}
+	
+	/**
+	 * Creates a normalized version of this vector.
+	 * @return {@code mul(1f / length());}<br>see {@link #mul(Number)}<br>see {@link #length()}
+	 */
+	public Vec2 normalized() {
+		return mul(CALCULATOR.div(1f, length()));
+	}
+	
+	/**
+	 * Calculates the length of this vector by taking the square root the dot product.
+	 * @return {@code Math.sqrt((double) dot(this));}<br>see {@link #dot(Vec2)}
+	 */
+	public Number length() {
+		return (Number) Math.sqrt((double) dot(this));
+	}
+	
+	
 }
