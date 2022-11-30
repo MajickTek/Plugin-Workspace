@@ -90,4 +90,45 @@ public class GenericMath {
 		
 		throw new IllegalArgumentException("n1 and n2 must be the same primitive type and a Double, Float, or Integer!");
 	}
+	
+	/**
+	 * Constrains {@code number} within a range
+	 * @param number the number to constrain
+	 * @param min the number that {@code number} cannot go under
+	 * @param max the number that {@code number} cannot go over
+	 * @throws IllegalArgumentEception if number is not one of {@code (Double, Float, Integer)}
+	 * @return {@code min} if {@code number} is smaller than {@code min}, {@code max} if {@code number} is larger than {@code max}, and {@code number} otherwise
+	 */
+	public Number clamp(Number number, Number min, Number max) {
+		assert (Objects.nonNull(number) && Objects.nonNull(min) && Objects.nonNull(max)) : "Values must NOT be null.";
+		
+		if(number instanceof Double) {
+			if(number.doubleValue() < min.doubleValue()) {return min;}
+			if(number.doubleValue() > max.doubleValue()) {return max;}
+			return number;
+			
+		} else if(number instanceof Float) {
+			if(number.floatValue() < min.floatValue()) {return min;}
+			if(number.floatValue() > max.floatValue()) {return max;}
+			return number;
+		} else if(number instanceof Integer) {
+			if(number.intValue() < min.intValue()) {return min;}
+			if(number.intValue() > max.intValue()) {return max;}
+			return number;
+		} else {
+			throw new IllegalArgumentException("number must be one of (Double, Float, Integer)");
+		}
+	}
+	
+	public static enum Calculator {
+		INSTANCE;
+		GenericMath math;
+		Calculator() {
+			math = new GenericMath();
+		}
+		
+		public GenericMath get() {
+			return math;
+		}
+	}
 }

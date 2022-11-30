@@ -10,5 +10,5 @@ public interface ILog {
 	default void error(String s) {
 		System.out.println(s);
 	}
-	default void warning(String s) {info(s);};
+	default void warning(String s) {System.out.println(s);};
 }

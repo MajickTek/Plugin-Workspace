@@ -1,7 +1,7 @@
 package com.mt.minicraft.math;
 
 public class Vec2 {
-	public static final GenericMath CALCULATOR = new GenericMath();
+	public static final GenericMath CALCULATOR = GenericMath.Calculator.INSTANCE.get();
 	
 	public static final Vec2 ZERO = new Vec2(0, 0);
 	

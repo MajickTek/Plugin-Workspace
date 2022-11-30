@@ -25,6 +25,7 @@ import com.mojang.ld22.screen.Menu;
 import com.mojang.ld22.screen.TitleMenu;
 import com.mojang.ld22.screen.WonMenu;
 import com.mt.minicraft.BaseAPI;
+import com.mt.minicraft.logging.ILog;
 import com.mt.pluginloader.PluginRegistryServiceLoader;
 
 public class Game extends Canvas implements Runnable {
