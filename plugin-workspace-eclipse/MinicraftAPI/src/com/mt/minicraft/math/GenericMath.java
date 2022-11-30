@@ -15,7 +15,7 @@ public class GenericMath {
 	 * @return n1 + n2  unless the underlying types are not the same. Casting is avoided.
 	 * @throws IllegalArgumentException n1 and n2 are not one of {@code (Double, Float, Integer)}
 	 */
-	Number add(Number n1, Number n2) {
+	public Number add(Number n1, Number n2) {
 		assert Objects.nonNull(n1) && Objects.nonNull(n2) : "n1/n2 must NOT be null.";
 		if ((n1 instanceof Double && n2 instanceof Double)) {
             return (Number) Double.valueOf((n1.doubleValue() + n2.doubleValue()));
@@ -25,7 +25,7 @@ public class GenericMath {
             return (Number) Integer.valueOf(((n1.intValue() + n2.intValue())));
         }
 		
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("n1 and n2 must be the same primitive type and a Double, Float, or Integer!");
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class GenericMath {
 	 * @return n1 - n2
 	 * @throws IllegalArgumentException n1 and n2 are not one of {@code (Double, Float, Integer)}
 	 */
-	Number sub(Number n1, Number n2) {
+	public Number sub(Number n1, Number n2) {
 		assert Objects.nonNull(n1) && Objects.nonNull(n2) : "n1/n2 must NOT be null.";
 		if ((n1 instanceof Double && n2 instanceof Double)) {
             return (Number) Double.valueOf((n1.doubleValue() - n2.doubleValue()));
@@ -46,7 +46,7 @@ public class GenericMath {
             return (Number) Integer.valueOf(((n1.intValue() - n2.intValue())));
         }
 		
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("n1 and n2 must be the same primitive type and a Double, Float, or Integer!");
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class GenericMath {
 	 * @return n1 * n2
 	 * @throws IllegalArgumentException n1 and n2 are not one of {@code (Double, Float, Integer)}
 	 */
-	Number mul(Number n1, Number n2) {
+	public Number mul(Number n1, Number n2) {
 		assert Objects.nonNull(n1) && Objects.nonNull(n2) : "n1/n2 must NOT be null.";
 		if ((n1 instanceof Double && n2 instanceof Double)) {
             return (Number) Double.valueOf((n1.doubleValue() * n2.doubleValue()));
@@ -67,7 +67,7 @@ public class GenericMath {
             return (Number) Integer.valueOf(((n1.intValue() * n2.intValue())));
         }
 		
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("n1 and n2 must be the same primitive type and a Double, Float, or Integer!");
 	}
 	
 	/**
@@ -78,7 +78,7 @@ public class GenericMath {
 	 * @return n1 / n2
 	 * @throws IllegalArgumentException n1 and n2 are not one of {@code (Double, Float, Integer)}
 	 */
-	Number div(Number n1, Number n2) {
+	public Number div(Number n1, Number n2) {
 		assert Objects.nonNull(n1) && Objects.nonNull(n2) : "n1/n2 must NOT be null.";
 		if ((n1 instanceof Double && n2 instanceof Double)) {
             return (Number) Double.valueOf((n1.doubleValue() / n2.doubleValue()));
@@ -88,6 +88,6 @@ public class GenericMath {
             return (Number) Integer.valueOf(((n1.intValue() / n2.intValue())));
         }
 		
-		throw new IllegalArgumentException();
+		throw new IllegalArgumentException("n1 and n2 must be the same primitive type and a Double, Float, or Integer!");
 	}
 }

@@ -109,6 +109,11 @@ public class Vec2 {
 	public Number length() {
 		return (Number) Math.sqrt((double) dot(this));
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Vec2 [x=" + x + ", y=" + y + "]";
+	}
+
 	
 }

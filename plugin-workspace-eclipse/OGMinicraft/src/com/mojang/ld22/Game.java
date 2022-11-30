@@ -136,6 +136,9 @@ public class Game extends Canvas implements Runnable {
 
 		resetGame();
 		setMenu(new TitleMenu());
+		getPlugins().forEach((n, p) -> {
+			p.onInit();
+		});
 	}
 
 	public void run() {
