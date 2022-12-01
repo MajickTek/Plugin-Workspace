@@ -1,6 +1,10 @@
 package com.mt.minicraft.math;
 
-public class Vec2 {
+import java.util.List;
+
+import com.mt.minicraft.util.TypeConverter;
+
+public class Vec2  implements TypeConverter<Vec2, List<Number>>{
 	public static final GenericMath CALCULATOR = GenericMath.Calculator.INSTANCE.get();
 	
 	public static final Vec2 ZERO = new Vec2(0, 0);
@@ -113,6 +117,28 @@ public class Vec2 {
 	@Override
 	public String toString() {
 		return "Vec2 [x=" + x + ", y=" + y + "]";
+	}
+
+	@Override
+	public Vec2 decode(List<Number> object) {
+		if(object != null && object.size() > 0) {
+			Number[] values = (Number[]) object.toArray(new Number[object.size()]);
+			if(values.length > 1) {
+				return xy(values[0], values[1]);
+			} else {
+				//TODO: error
+				return ZERO;
+			}
+		}
+		return ZERO;
+	}
+
+	@Override
+	public List<Number> encode(Vec2 object) {
+		if(object != null) {
+			return List.of(object.x, object.y);
+		}
+		return List.of(0,0);
 	}
 
 	
