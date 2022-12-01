@@ -1,4 +1,4 @@
-package com.mt.pluginloader.util.io;
+package com.mt.pluginloader.io;
 
 import java.io.File;
 import java.io.IOException;
