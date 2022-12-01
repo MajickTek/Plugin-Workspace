@@ -17,16 +17,29 @@ public class InternalFileHandler {
 		this.clazz = clazz;
 	}
 	
+	public InternalFileHandler() {
+		this.clazz = this.getClass();
+	}
+	
+	public void setClazz(Class<?> clazz) {
+		this.clazz = clazz;
+	}
+	
+	public InternalFileHandler withClazz(Class<?> clazz) {
+		setClazz(clazz);
+		return this;
+	}
+	
 	public File getInternalFile(String path) throws URISyntaxException {
 		return new File(clazz.getResource(path).toURI());
 	}
 	
-	public ArrayList<File> getFiles(int depth) throws URISyntaxException, IOException {
+	public ArrayList<File> getFiles(String path, int depth) throws URISyntaxException, IOException {
 		assert depth > 0 : "depth must be larger than zero";
-		URL root = clazz.getResource("/");
-		Path path = Paths.get(root.toURI());
+		URL root = clazz.getResource(path);
+		Path walker = Paths.get(root.toURI());
 		ArrayList<File> list = new ArrayList<>();
-		Files.walk(path, depth).forEach(p -> {
+		Files.walk(walker, depth).forEach(p -> {
 			list.add(p.toFile());
 		});
 		

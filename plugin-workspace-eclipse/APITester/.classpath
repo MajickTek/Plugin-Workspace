@@ -6,8 +6,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/BaseAPI"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/MinicraftAPI"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/PluginLoader"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/MinicraftAPI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BaseAPI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
