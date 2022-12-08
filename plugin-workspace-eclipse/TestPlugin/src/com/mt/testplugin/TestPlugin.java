@@ -25,11 +25,9 @@ public class TestPlugin implements BaseAPI{
 				Field menuOptionsField = menuClass.getClass().getDeclaredField("options");
 				menuOptionsField.setAccessible(true);
 				
-				Object menuTitles = menuTitlesField.get(menuClass);
-				Object menuOptions = menuOptionsField.get(menuClass);
+				ArrayList<String> titles = (ArrayList<String>) menuTitlesField.get(menuClass);
+				ArrayList<Callback> options = (ArrayList<Callback>) menuOptionsField.get(menuClass);
 				
-				ArrayList<String> titles = (ArrayList<String>) menuTitles;
-				ArrayList<Callback> options = (ArrayList<Callback>) menuOptions;
 				
 				titles.add("Quit");
 				options.add(() -> System.exit(0));
@@ -39,6 +37,7 @@ public class TestPlugin implements BaseAPI{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		
 	}
 	
