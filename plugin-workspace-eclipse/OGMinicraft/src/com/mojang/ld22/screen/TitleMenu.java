@@ -1,34 +1,61 @@
 package com.mojang.ld22.screen;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.mojang.ld22.gfx.Color;
 import com.mojang.ld22.gfx.Font;
 import com.mojang.ld22.gfx.Screen;
 import com.mojang.ld22.sound.Sound;
+import com.mt.minicraft.util.Callback;
 
 public class TitleMenu extends Menu {
 	private int selected = 0;
 
-	private static final String[] options = { "Start game", "How to play", "About" };
-
+	//private static final String[] options = { "Start game", "How to play", "About" };
+	
+	private static final ArrayList<Callback> options = new ArrayList<>();
+	private static final ArrayList<String> titles = new ArrayList<>();
+	
 	public TitleMenu() {
+		titles.add("Start Game");
+		options.add(() -> {
+			Sound.test.play();
+			game.resetGame();
+			game.setMenu(null);
+		});
+		
+		titles.add("How to Play");
+		options.add(() -> {
+			game.setMenu(new InstructionsMenu(this));
+		});
+		
+		titles.add("About");
+		options.add(() -> {
+			game.setMenu(new AboutMenu(this));
+		});
+		
+		
 	}
 
 	public void tick() {
 		if (input.up.clicked) selected--;
 		if (input.down.clicked) selected++;
 
-		int len = options.length;
+		//int len = options.length;
+		int len = titles.size();
 		if (selected < 0) selected += len;
 		if (selected >= len) selected -= len;
 
 		if (input.attack.clicked || input.menu.clicked) {
-			if (selected == 0) {
-				Sound.test.play();
-				game.resetGame();
-				game.setMenu(null);
-			}
-			if (selected == 1) game.setMenu(new InstructionsMenu(this));
-			if (selected == 2) game.setMenu(new AboutMenu(this));
+//			if (selected == 0) {
+//				Sound.test.play();
+//				game.resetGame();
+//				game.setMenu(null);
+//			}
+//			if (selected == 1) game.setMenu(new InstructionsMenu(this));
+//			if (selected == 2) game.setMenu(new AboutMenu(this));
+			options.get(selected).call();
 		}
 	}
 
@@ -46,16 +73,27 @@ public class TitleMenu extends Menu {
 			}
 		}
 
-		for (int i = 0; i < 3; i++) {
-			String msg = options[i];
+//		for (int i = 0; i < 3; i++) {
+//			String msg = options[i];
+//			int col = Color.get(0, 222, 222, 222);
+//			if (i == selected) {
+//				msg = "> " + msg + " <";
+//				col = Color.get(0, 555, 555, 555);
+//			}
+//			Font.draw(msg, screen, (screen.w - msg.length() * 8) / 2, (8 + i) * 8, col);
+//		}
+
+		for(int i = 0; i < titles.size(); i++) {
+			String msg = titles.get(i);
+			
 			int col = Color.get(0, 222, 222, 222);
-			if (i == selected) {
+			if(i == selected) {
 				msg = "> " + msg + " <";
 				col = Color.get(0, 555, 555, 555);
 			}
 			Font.draw(msg, screen, (screen.w - msg.length() * 8) / 2, (8 + i) * 8, col);
 		}
-
+		
 		Font.draw("(Arrow keys,X and C)", screen, 0, screen.h - 8, Color.get(0, 111, 111, 111));
 	}
 }
